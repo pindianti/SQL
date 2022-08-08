@@ -1,0 +1,58 @@
+SQL
+Ada 3 jenis perintah SQL
+DDL (Data Definition Language)  : CREATE, ALTER, RENAME, DROP
+DML (Data Manupulation Language): SELECT, INSERT, UPDATE, DELETE
+DCL (Data Control Language)     : GRANT, REVOKE
+
+- Command buat bikin db sampai tabel
+  > CREATE DATABASE namadb 
+  > SHOW DATABASES 
+  > USE namadb
+  > DROP DATABASE namadb
+  > CREATE TABLE namatb (no INT(10) NOT NULL, nama VARCHAR(50) NOT NULL, tanggal DATE, PRIMARY KEY(no))
+  > SHOW TABLES
+  > DESC namatb (buat liat deskripsi)
+  
+- Ubah struktur tabel
+ALTER TABLE namatb alter_options
+	> ADD field_baru (nambah field)
+	> ADD INDEX nama_index
+	> ADD PRIMARY KEY (field_kunci)
+	> CHANGE field_yg_diubah definisi_field _baru
+	> MODIFY definisi_field (field menjadi definisi field)
+	> DROP nama_field
+	> RENAME TO nama_tabel_baru
+  
+- Ubah nama tabel 
+  > RENAME TABLE namatb TO nama_tb
+  > ALTER TABLE nama_tb RENAME TO namatb
+- Hapus tabel
+  > DROP TABLE namatb
+- Insert data
+  > INSERT INTO namatb VALUES ('1','mila','1999-12-19')
+
+- Update tabel namatb
+misal nih alamatnya pengen diubah, jadinya
+UPDATE namatb SET alamat='Tangerang' WHERE id='01'
+contoh lagi
+UPDATE namatb SET email='mila191@gmail.com', alamat='jogja' WHERE id='02'
+- Hapus data dengan id 05
+DELETE FROM namatb WHERE id='05
+
+-Beberapa command SELECT
+	> SELECT*FROM namatb
+	> SELECT id, nama, alamat FROM namatb
+	> SELECT id, nama, alamat FROM namatb WHERE id='06'
+	> SELECT id, nama, email FROM namatb WHERE email LIKE '%yahoo%' (ini buat kasus email yg ada kata kunci yahoo-nya)
+- misal kasus data pelanggan dgn alamat jkt dan kata kunci gmail
+	> SELECT id, nama, alamat, email FROM namatb WHERE alamat='jkt' &&
+		email LIKE '%gmail.com'
+- nampilin semua data pelanggan secara urut berdasarkan nama pelanggan (misal alfabetnya urut a,b,c,d)	
+	> SELECT id,nama FROM namatb ORDER BY nama
+- mirip order by tapi descending (terbalik menurun gitu)
+	> SELECT id, nama FROM namatb ORDER BY nama DESC
+- nampilin 3 record (data) pertama dari tabel namatb secara URUT berdasarkan nama pelanggan (pakenya lIMIT)
+	> SELECT id, nama FROM namatb ORDER BY nama LIMIT 0,3
+	* note = format limit (LIMIT awal, jumlah_record), jadi limit awalnya selalu 0?
+- nampilin jumlah record di tabel namatb
+	> SELECT COUNT(*)FROM namatb
