@@ -58,7 +58,122 @@ DCL (Data Control Language)     : GRANT, REVOKE (tentang hak akses)
 	> SELECT COUNT(*)FROM namatb
 	
 	
-###DCL###
-- Melihat semua hak akses user
-	> SHOW GRANTS
+Fungsi-fungsi mysql:
+
+###FUNGSI STRING###
+- Menggabungkan dua atau lebih string (kolom)
+	> SELECT nama, CONCAT(nama,'',email) FROM namatb
+- Sama seperti tadi, cuma ini dengan separator di antara masing-masing string
+	> SELECT CONCAT_WS(',','mila','pindi','dian')
+- Fungsi untuk memotong string. index string dimulai dari 1, bukan 0
+	> SELECT SUBSTRING('milapindi',1,4);
+- Fungsi untuk menghitung panjang string
+	> SELECT LENGTH('milapindianti')
+- Memotong string dari sebelah kiri sebanyak 4
+	> SELECT LEFT('milapindi',4)
+- Memotong string dari sebelah kanan sebanyak 4
+	> SELECT RIGHT('milapindi',4)
+- Menghilangkan spasi di awal string (kiri)
+	> SELECT LTRIM(' milapindi')
+- Menghilangkan spasi di akhir string (kanan)
+	> SELECT RTRIM('milapindi ')
+- Menghilangkan spasi di awal dan di akhir string (kiri dan kanan)
+	> SELECT TRIM(' milapindi ')
+- Mengganti suatu string dengan string lainnya
+	misal w ingin diganti dengan x
+	> SELECT REPLACE('www.mysql.com','w','x')
+	hasilnya: xxx.mysql.com
+- Menduplikasi suatu string sebanyak jumlah yang ditentukan
+	> SELECT REPEAT('Mila', 3)
+	hasilnya: MilaMilaMila
+- Membalik string
+	> SELECT REVERSE('milapindi')
+	hasilnya: idnipalim
+- Mengubah string menjadi huruf kecil
+	> SELECT LOWER('MilaPINDI')
+	hasilnya: Milapindi
+- Mengubah string menjadi huruf kapital
+	> SELECT UPPER('milapindi')
+	hasilnya: MILAPINDI
+
+
+###FUNGSI TANGGAL DAN WAKTU###
+- Mendapatkan tanggal dan waktu sistem sekarang
+	> SELECT NOW()
+- Mendapatkan urutan bulan(integer) dari suatu tanggal yang diberikan dalam setahun, dimana 1=Januari, dst
+	> SELECT MONTH('2022-08-08')
+	hasilnya: 8
+- Mendapatkan urutan minggu(integer) dari tanggal yang diberikan dalam setahun
+	> SELECT WEEK('2022-08-08')
+	hasilnya: 32
+- Mendapatkan bilangan tahun dari suatu tanggal yang diberikan
+	> SELECT YEAR(now())
+	hasilnya: 2022
+- Mendapatkan bilangan jam dari suatu parameter waktu yang diberikan
+	> SELECT HOUR(now())
+	hasilnya: 17
+- Mendapatkan bilangan menit dari suatu parameter waktu yang diberikan
+	> SELECT MINUTE(now())
+	hasilnya:
+- Mendapatkan bilangan detik dari suatu waktu yang diberikan
+	> SELECT SECOND(now())
+	hasilnya:
+- Menambah suatu tanggal (1 hari kedepan)
+	> SELECT DATE_ADD(now()), INTERVAL 1 DAY)
+	hasilnya:
+- Untuk memformat tampilan waktu
+	formatnya:
+	%M : Nama bulan (January,.., December)
+	%W : Nama hari dalam seminggu (Sunday,.., Saturday)
+	%D : Urutan hari dalam sebulan
+	%Y : Tahun, 4 digit
+	%y : Tahun, 2 digit
+	%a : Nama hari dalam seminggu(Sunday,.., Saturday)
+	%H : Jam, dalam format 24
+	%i : Menit, 00-59
+	%s : Detik, 00-59
+	> SELECT DATE_FORMAT (now(), '%d-%M-%Y %H:%i:%s')
+	hasilnya: 
+
+
+###FUNGSI NUMERIK###
+Operasi matematika dalam MySQL:
++ : Pertambahan
+- : Pengurangan
+* : Perkalian
+/ : Pembagian
+% : Sisa hasil bagi, modulus
+Contoh
+	> SELECT 15+15
+	hasil: 30
+	> SELECT 15/3
+	hasil: 5
+- Mengambil nilai absolut dari bilangan x
+	> SELECT ABS(-15)
+	hasil: 15
+- Mengoperasikan m modulus n
+	> SELECT MOD(10,3)
+	hasil: 1
+- Mengambil nilai integer terbesar yang tidak lebih besar dari x
+	> SELECT FLOOR(9.1675)
+	hasil: 9
+- Mengambil nilai integer terkecil yang tidak lebih kecil dari x
+	> SELECT CEILING(9.1675)
+	hasil: 10
+- Melakukan pembulatan bilangan x sebanyak d tempat presisi
+	> SELECT ROUND(9.1675, 2)
+	hasil: 9.17
+- Mengetahui hasil pemangkatan dari X^n
+	> SELECT POW(2, 10)
+	hasil: 1024
+- Mengambil nilai random di antara 0 s/d 1.0
+	> SELECT RAND()
+	hasil: 0.8307810675639483
+- TRUNCATE(x,d)
+	> SELECT TRUNCATE(9.1675,1)
+	hasil: 9.1
+
+
+
+###FUNGSI LAINNYA###
 	
