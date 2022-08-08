@@ -1,7 +1,7 @@
 SQL
 Ada 3 jenis perintah SQL
 DDL (Data Definition Language)  : CREATE, ALTER, RENAME, DROP
-DML (Data Manupulation Language): SELECT, INSERT, UPDATE, DELETE
+DML (Data Manipulation Language): SELECT, INSERT, UPDATE, DELETE
 DCL (Data Control Language)     : GRANT, REVOKE (tentang hak akses)
 
 ###DDL###
@@ -23,7 +23,7 @@ DCL (Data Control Language)     : GRANT, REVOKE (tentang hak akses)
 	> MODIFY definisi_field (field menjadi definisi field)
 	> DROP nama_field
 	> RENAME TO nama_tabel_baru
-  - Ubah nama tabel 
+ - Ubah nama tabel 
   	> RENAME TABLE namatb TO nama_tb
   	> ALTER TABLE nama_tb RENAME TO namatb
 - Hapus tabel
