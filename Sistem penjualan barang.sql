@@ -73,4 +73,52 @@ SELECT pelanggan.id_pelanggan, pelanggan.nama_pelanggan, pesan.id_pesan, pesan.t
 FROM pelanggan RIGHT JOIN pesan
 ON pelanggan.id_pelanggan=pesan.id_pelanggan;
 
+#Menggabungkan tiga tabel untuk pemesanan dengan nomor 1
+SELECT pesan.id_pesan, produk.id_produk, produk.nama_produk, detil_pesan.harga, detil_pesan.jumlah
+FROM pesan, detil_pesan, produk
+WHERE pesan.id_pesan=detil_pesan.id_pesan AND
+detil_pesan.id_produk=produk.id_produk AND pesan.id_pesan='1'
+
+#Pengelompokkan hasil query dengan GROUP BY (tanpa dijumlahkan (masing-masing transaksi))
+SELECT pesan.id_pesan, pesan.tgl_pesan, detil_pesan.jumlah
+FROM pesan, detil_pesan
+WHERE pesan.id_pesan=detil_pesan.id_pesan;
+
+#Pengelompokkan hasil query dengan GROUP BY dan SUM untuk menjumlahkan barang
+SELECT pesan.id_pesan, pesan.tgl_pesan, SUM(detil_pesan.jumlah) as jumlah
+FROM pesan, detil_pesan
+WHERE pesan.id_pesan=detil_pesan.id_pesan
+GROUP BY id_pesan;
+
+#Pengelompokkan hasil query dengan tambahan WITH ROLLUP untuk menampilkan jumlah total seluruh barang
+SELECT pesan.id_pesan, pesan.tgl_pesan, SUM(detil_pesan.jumlah) as jumlah
+FROM pesan, detil_pesan
+WHERE pesan.id_pesan=detil_pesan.id_pesan
+GROUP BY id_pesan WITH ROLLUP;
+
+#Perintah query untuk menampilkan jumlah item(jenis) barang di tiap transaksi
+SELECT pesan.id_pesan, COUNT(detil_pesan.id_produk) as jumlah
+FROM pesan, detil_pesan
+WHERE pesan.id_pesan=detil_pesan.id_pesan
+GROUP BY pesan.id_pesan;
+
+#Perintah query dengan HAVING, kasusnya menampilkan data yg jumlah item barangnya lebih dari 2(note: WHERE tidak bisa diterapkan pada fungsi agregat seperti COUNT, SUM, AVG, dll)
+SELECT pesan.id_pesan, COUNT(detil_pesan.id_produk) as jumlah
+FROM pesan, detil_pesan
+WHERE pesan.id_pesan=detil_pesan.id_pesan
+GROUP BY pesan.id_pesan
+HAVING jumlah>2;
+
+#Menampilkan data yang kondisinya merupakan hasil dari query lain dengan SubSELECT
+#Menampilkan daftar pelangan yang pernah melakukan transaksi(pemesanan)
+SELECT id_pelanggan, nama_pelanggan FROM pelanggan
+WHERE id_pelanggan IN (SELECT id_pelanggan FROM pesan);
+
+#Menampilkan data pemesanan dengan jumlah barang terbanyak
+SELECT id_pesan, jumlah FROM detil_pesan
+WHERE jumlah=(SELECT MAX(jumlah) FROM detil_pesan);
+
+#Menampilkan record secara random
+SELECT id_pelanggan, nama_pelanggan, email FROM pelanggan ORDER BY RAND()
+
 
