@@ -176,4 +176,52 @@ Contoh
 
 
 ###FUNGSI LAINNYA###
+- Mengambil nilai terbesar dari suatu kumpulan nilai
+	> SELECT GREATEST(3,4,1,2,6,7,2)
+	hasil: 7
+- Mengambil jumlah baris dari suatu query
+	> SELECT COUNT(*) FROM namatb
+- Mengambil nilai terbesar daru suatu ekspresi (query)
+	misal dibuat tabel dengan nama nilai_ujian berisi field id dan nilai
+	> SELECT MAX(nilai) FROM nilai_ujian
+- Mengambil nilai terkecil dari suatu ekspresi(query)
+	> SELECT MIN(nilai) FROM nilai_ujian
+- Menjumlahkan total nilai dari suatu ekspresi(query)
+	> SELECT SUM(nilai) FROM nilai_ujian
+- Menghitung rata-rata nilai dari suatu ekspresi(query)
+	> SELECT AVG(nilai) FROM nilai_ujian
+
+
+
+###OPERASI BITWISE###
+Operasi bitwise dalam MySQL terdiri dari:
+|	: Bitwise OR
+&	: Bitwise AND
+<<	: Shift kiri
+>>	: Shift kanan
+~	: Invert, negasi
+
+Contoh:
+	> SELECT 4|2
+	hasil: 6
+- Mengambil nama database yang sedang aktif (terbuka)
+	> SELECT DATABASE()
+- Mengambil user yang sedang digunakan (aktif)
+	> SELECT USER()
+- Menyimpan password login (string hasil dari fungsi password() tidak dapat di-decript (decode))
+	> SELECT PASSWORD('qwerty')
+	hasil: *AA1420F182E88B9E5F874F6FBE7459291E8F4601
+- Melakukan enkripsi suatu string str menggunakan password atau key pass
+	> SELECT ENCODE('qwerty', 'password')
+	hasil: cÂe|
+- Melakukan deskripsi suatu string encripted_str menggunakan password atau key pass (jika passwordnya benar, maka string aslinya akan benar)
+	> SELECT DECODE('cÂe|','password')
+	hasil: qwerty
+- Melakukan enkripsi suatu string str menggunakan metode md5 (fungsi ini tidak dapat dienkripsi)
+	> SELECT MD5('qwerty')
+	hasil: d8578edf8458ce06fbc5bb76a58c5ca4
+- Mengambil id terakhir dalam proses insert dimana tabelnya mengandung field yang bersifat AUTO INCREMENT
+	> SELECT LAST_INSERT_ID()
+- Mengambil versi MySQL yang digunakan
+	> SELECT VERSION()
 	
