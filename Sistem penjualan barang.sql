@@ -157,3 +157,18 @@ SELECT nama_pelanggan, email FROM pelanggan WHERE NOT id_pelanggan='1';
   
 #SUBQUERY
 #query di dalam query
+#Misal ingin dicari jumlah penjualan produk terbanyak dari tabel detil_pesan
+SELECT*FROM detil_pesan
+  WHERE jumlah = (SELECT MAX(jumlah) FROM detil_pesan);
+#Kemudian ingin dicari tau data jumlah penjualan produk yang berada di bawah nilai rata-rata
+SELECT*FROM detil_pesan
+  WHERE jumlah < (SELECT AVG(jumlah) FROM detil_pesan);
+#Mencari data id produk yang tidak ada di tabel produk
+SELECT*FROM detil_pesan
+  WHERE id_produk NOT IN (SELECT DISTINCT id_produk FROM produk);
+#Mencari data id pelanggan pada tanggal tertentu menggunakan WHERE
+SELECT*FROM pelanggan
+  WHERE id_pelanggan IN (SELECT DISTINCT id_pelanggan
+                         FROM pesan WHERE tgl_pesan = '2022-08-09');
+  
+  
